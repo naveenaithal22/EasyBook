@@ -64,11 +64,6 @@ export class AppService {
   }
 
   async findAll(filter: FilterLogsDto) {
-    this.mailService.sendMail(
-      'naveenaithal0@gmail.com',
-      'Test Subject',
-      'Acctount crtaed successfully',
-    );
     return this.notificationRepo.findAll(filter);
   }
 

@@ -1,0 +1,32 @@
+<h1 mat-dialog-title class="text-center">{{title}}</h1>
+<div mat-dialog-content>
+  <mat-form-field class="w-100" appearance="fill">
+    <mat-label>User Name</mat-label>
+    <input matInput [(ngModel)]="booking.userName" />
+  </mat-form-field>
+
+  <mat-form-field class="w-100" appearance="fill">
+    <mat-label>Room</mat-label>
+    <mat-select [(ngModel)]="booking.roomId">
+      <mat-option *ngFor="let room of rooms" [value]="room.id">{{ room.number }} - {{ room.type }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="w-100" appearance="fill">
+    <mat-label>Start Date</mat-label>
+    <input matInput [matDatepicker]="startDatePicker" [(ngModel)]="booking.startDate" />
+    <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+    <mat-datepicker #startDatePicker></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field class="w-100" appearance="fill">
+    <mat-label>End Date</mat-label>
+    <input matInput [matDatepicker]="endDatePicker" [(ngModel)]="booking.endDate" />
+    <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+    <mat-datepicker #endDatePicker></mat-datepicker>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions class="text-center">
+  <button class="btn" mat-button (click)="onCancel()">Cancel</button>
+  <button class="btn btn-primary" mat-button color="primary" (click)="onSave()">Save</button>
+</div>

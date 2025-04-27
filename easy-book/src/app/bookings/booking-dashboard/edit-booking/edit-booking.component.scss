@@ -1,0 +1,31 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.btn {
+  padding: 4%;
+  border-radius: 5px;
+  border: 1px solid #808080;
+  width: 100px;
+  margin: 1%;
+}
+
+.btn-primary {
+  border: 1px solid #00458f;
+  background-color: #00458f;
+  color: white;
+}
+
+.btn-primary:hover {
+  border: 1px solid #002f61;
+  background-color: #002f61;
+}

@@ -1,0 +1,16 @@
+<h1 mat-dialog-title class="text-center">{{title}}</h1>
+<div mat-dialog-content>
+  <mat-form-field class="w-100" appearance="fill">
+    <mat-label>Room Number</mat-label>
+    <input matInput [(ngModel)]="room.number" />
+  </mat-form-field>
+
+  <mat-form-field class="w-100" appearance="fill">
+    <mat-label>Type</mat-label>
+    <input matInput [(ngModel)]="room.type" />
+  </mat-form-field>
+</div>
+<div mat-dialog-actions class="text-center">
+  <button class="btn" mat-button (click)="onCancel()">Cancel</button>
+  <button class="btn btn-primary" mat-button color="primary" (click)="onSave()">Save</button>
+</div>

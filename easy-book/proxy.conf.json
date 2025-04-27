@@ -1,0 +1,23 @@
+{
+  "/user-api": {
+    "target": "http://localhost:5001",
+    "secure": false,
+    "changeOrigin": true,
+    "pathRewrite": { "^/user-api": "" },
+    "logLevel": "debug"
+  },
+  "/booking-api": {
+    "target": "http://localhost:50148",
+    "secure": false,
+    "changeOrigin": true,
+    "pathRewrite": { "^/booking-api": "" },
+    "logLevel": "debug"
+  },
+  "/room-api": {
+    "target": "http://localhost:50147",
+    "secure": false,
+    "changeOrigin": true,
+    "pathRewrite": { "^/room-api": "" },
+    "logLevel": "debug"
+  }
+}

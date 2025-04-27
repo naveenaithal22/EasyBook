@@ -26,9 +26,6 @@ export class AppController {
 
   @EventPattern('notifications')
   async onNotifications(@Payload() payload: any, @Ctx() context: KafkaContext) {
-    console.debug('Received message:', payload);
-
-    // Save to DB
     if (payload !== null && payload !== undefined) {
       const body: NotificationInterface = {
         id: payload.id,
