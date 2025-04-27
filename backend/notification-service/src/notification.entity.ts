@@ -23,6 +23,12 @@ export class Notification extends Model<Notification> {
     type: DataType.STRING,
     allowNull: false,
   })
+  email: string;
+
+  @Column({
+    type: DataType.STRING,
+    allowNull: false,
+  })
   user: string;
 
   @Column(DataType.TEXT)

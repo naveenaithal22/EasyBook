@@ -1,4 +1,5 @@
 import { CommonModule } from "@angular/common";
+import { HttpClient, HttpClientModule } from "@angular/common/http";
 import { Component, Optional } from "@angular/core";
 import {
   FormBuilder,
@@ -36,6 +37,7 @@ import { SharedModule } from "../../shared/shared.module";
     FormsModule,
     SharedModule,
     ReactiveFormsModule,
+    HttpClientModule,
   ],
 })
 export class SignupComponent {
@@ -45,6 +47,7 @@ export class SignupComponent {
   constructor(
     private fb: FormBuilder,
     private router: Router,
+    private httpClit: HttpClient,
     @Optional() private dialogRef: MatDialogRef<SignupComponent>
   ) {
     this.signupForm = this.fb.group({
@@ -58,17 +61,36 @@ export class SignupComponent {
   }
 
   onSubmit() {
-    if (!this.signupForm.value.password || !this.signupForm.value.email) {
+    if (!this.signupForm.value.email) {
       return alert("Password and email are not allowed to be empty");
     }
     console.log("Signup data:", this.signupForm.value);
 
-    if (this.router.url === "/signup") {
-      this.router.navigate(["/login"]);
-    }
-    if (this.dialogRef) {
-      this.dialogRef.close("success");
-    }
+    // Perform your signup logic here
+    let body = {
+      name: this.signupForm.value.username,
+      email: this.signupForm.value.email,
+      phone: this.signupForm.value.phoneNumber,
+    };
+    this.httpClit.post("http://127.0.0.1:8000/users", body).subscribe(
+      (response) => {
+        console.log("Signup successful:", response);
+        if (this.router.url === "/signup") {
+          alert("Signup successful");
+          this.router.navigate(["/login"]);
+        }
+        if (this.dialogRef) {
+          alert("Registration successful");
+
+          this.dialogRef.close("success");
+        }
+      },
+      (error) => {
+        alert(error.detail || "Error during signup");
+      }
+    );
+    // Close the dialog if it was opened as a dialog
+
     // Here you can call your API to save the user
   }
 }

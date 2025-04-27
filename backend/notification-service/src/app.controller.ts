@@ -31,10 +31,12 @@ export class AppController {
     // Save to DB
     if (payload !== null && payload !== undefined) {
       const body: NotificationInterface = {
+        id: payload.id,
+        email: payload.email,
         type: payload.type,
         user: payload.user,
         message: payload.message,
-        status: 'PENDING', // or any logic you want
+        status: 'Sent',
         sentAt: new Date(),
       };
       await this.appService.handleMessage(body);

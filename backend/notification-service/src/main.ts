@@ -12,7 +12,7 @@ async function bootstrap() {
     options: {
       client: {
         clientId: 'notification-consumer',
-        brokers: [process.env.KAFKA_BROKER || 'localhost:9092'],
+        brokers: [process.env.KAFKA_BROKER || 'localhost:9093'],
       },
       consumer: {
         groupId: 'notification-service-group-server',
@@ -22,7 +22,7 @@ async function bootstrap() {
 
   // 3️⃣ Start the Kafka microservice
   await app.startAllMicroservices();
-
+  app.enableCors(); // <-- this enables CORS with default settings (allow all origins)
   // 4️⃣ (Optional) Start the HTTP server
   await app.listen(3000, () => {
     console.log('HTTP server listening on port 3000');

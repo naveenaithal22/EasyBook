@@ -6,6 +6,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { Notification } from './notification.entity';
 import { NotificationRepository } from './notification.repository';
+import { MailService } from './mail/mail.service';
 @Module({
   imports: [
     SequelizeModule.forRoot({
@@ -27,7 +28,7 @@ import { NotificationRepository } from './notification.repository';
         options: {
           client: {
             clientId: 'notification-producer',
-            brokers: [process.env.KAFKA_BROKER || 'localhost:9092'],
+            brokers: [process.env.KAFKA_BROKER || 'localhost:9093'],
           },
           consumer: {
             groupId: 'notification-service-group', // groupId must be unique per service
@@ -38,7 +39,7 @@ import { NotificationRepository } from './notification.repository';
     ]),
   ],
   controllers: [AppController],
-  providers: [AppService, NotificationRepository],
+  providers: [AppService, NotificationRepository, MailService],
   exports: [AppService],
 })
 export class AppModule {}

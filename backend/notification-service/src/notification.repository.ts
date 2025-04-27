@@ -36,4 +36,16 @@ export class NotificationRepository {
     const data = await this.notificationModel.findByPk(id);
     return data;
   }
+  async updateById(id: number, payload: NotificationInterface) {
+    console.log('id is', id, 'payload is', payload);
+    const [affectedCount] = await this.notificationModel.update(payload, {
+      where: { id },
+    });
+
+    if (affectedCount === 0) {
+      throw new Error('Notification not found or no changes');
+    }
+
+    return await this.notificationModel.findByPk(id);
+  }
 }
